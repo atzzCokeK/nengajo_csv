@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CSV
+module Csv
   class HeaderAnalyzer
     def initialize(headers:, template:)
       @headers = headers
