@@ -14,7 +14,11 @@ module V1
 
             return render json: { error: "could not read headers from file" }, status: :unprocessable_entity if headers.blank?
 
-            render json: { headers: headers }
+            template = Templates::Loader.load("fudemame_to_pixus")
+            analyzer = Csv::HeaderAnalyzer.new(headers: headers, template: template)
+            result = analyzer.analyze
+
+            render json: result
 
         rescue CSV::MalformedCSVError => e
             render json: { error: "could not read file", details: e.message }, status: :unprocessable_entity
