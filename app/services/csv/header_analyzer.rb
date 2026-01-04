@@ -9,7 +9,7 @@ module Csv
 
     def analyze
       mapped = {}
-      mapping = @template[:mapping]
+      mapping = @template["mapping"]
 
       @headers.each do |header|
         mapped[header] = mapping[header] if mapping.key?(header)
